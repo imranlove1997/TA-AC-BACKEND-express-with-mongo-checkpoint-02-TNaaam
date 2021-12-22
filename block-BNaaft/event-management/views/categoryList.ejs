@@ -1,0 +1,11 @@
+<%- include('content/header') -%>
+<%- include('content/navbar') -%>
+<ul class="category-list container">
+    <% if (categories.length === 0) { %>
+        <li>No categories</li>
+        <% } %>
+    <% categories.forEach(category => { %>
+        <li><%= category.name %></li>
+   <% }) %>
+</ul>
+<%- include('content/footer') -%>
