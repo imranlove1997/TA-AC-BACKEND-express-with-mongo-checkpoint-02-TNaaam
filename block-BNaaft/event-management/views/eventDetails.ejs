@@ -1,0 +1,61 @@
+<%- include('content/header') -%>
+<%- include('content/navbar') -%>
+<div class="container">
+<main>
+    <section>
+        <div class="grid column">
+            <div class="event">
+                <div class="border">
+                <div class="heading">
+                    <%= event.title %>
+                    <span class="likes-content">Likes This Event <i class="fa fa-thumbs-o-up"></i> <%= event.likes %></span>
+                </div>
+                <p class="summary"><%= event.summary %></p>
+                <div class="box flex
+                 space-between align-items">
+                    <span><%= event.host %></span>
+                    <span><%= event.start_date %></span>
+                    <span><%= event.end_date %></span>
+                    <span><%= event.location %></span>
+                    <span><% event.category.forEach(cat => { %>
+                            <%= cat.name %>
+                   <% }) %></span>
+                </div>
+            </div>
+                <% event.remark.forEach(even => { %>
+                    <div class="remark-box flex space-between align-items">
+                    <div class="content">
+                    <%= even.content %>
+                    </div>
+                    <div class="author">
+                        <%= even.author %>
+                    </div>
+                    <span class="likes">
+                        <i class="fa fa-thumbs-o-up"></i> <%= even.likes %>
+                    </span>
+                </div>
+               <% }) %>
+            <h3 class="center">Add Remark</h3>
+            <form action="/events/<%= event._id%>/remarks" method="POST">
+                <div class="form-control">
+                <textarea name="content" id="content" cols="30" rows="10" placeholder="Enter Content" required></textarea>
+                <input type="text" name="author" id="author" placeholder="Enter Author" required>
+                <input type="submit" value="Add Remark">
+            </div>
+            </form>
+        </div>
+        <aside class="sidebar">
+            <h3>Category</h3>
+            <div class="category-list">
+            <ul>
+                    <% event.category.forEach(cat => { %>
+                       <li> <%= cat.name %></li>
+               <% }) %>
+            </ul>
+        </div>
+        </aside>
+    </div>
+    </section>
+</main>
+</div>
+<%- include('content/footer') -%>
