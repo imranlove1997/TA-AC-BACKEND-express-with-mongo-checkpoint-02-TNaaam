@@ -1,0 +1,65 @@
+<%- include('content/header') -%>
+<%- include('content/navbar') -%>
+<div class="container">
+    <div class="center">
+        <div class="filter-add active">
+    <button class="filter-btn">Filter <i class="fa fa-filter"></i></button>
+</div>
+<div class="filter add">
+    <label for="select">
+        Select By Category
+    </label>
+        <select name="event" id="">
+            <option value="cat-1">Category 1</option>
+            <option value="cat-1">Category 1</option>
+            <option value="cat-1">Category 1</option>
+            <option value="cat-1">Category 1</option>
+            <option value="cat-1">Category 1</option>
+            <option value="cat-1">Category 1</option>
+            <option value="cat-1">Category 1</option>
+        </select>
+        <i class="fa fa-close"></i>
+</div>
+</div>
+<main>
+    <section>
+        <div class="grid column">
+            <div class="event">
+                <% events.forEach(event => { %>
+                <div class="border">
+                <div class="heading">
+                    <%= event.title %>
+                    <span class="likes-content">Likes This Event <i class="fa fa-thumbs-o-up"></i> <%= event.likes %></span>
+                </div>
+                <p class="summary"><%= event.summary.substr(0,100) %></p>
+                <a href="/events/<%= event._id %>"><button class="read-btn">Know More</button></a>
+                <div class="box flex
+                 space-between align-items">
+                    <span><%= event.host %></span>
+                    <span><%= event.start_date %></span>
+                    <span><%= event.end_date %></span>
+                    <span><%= event.location %></span>
+                    <span><% event.category.forEach(cat => { %>
+                            <%= cat.name %>
+                   <% }) %></span>
+                </div>
+            </div>
+       <% }) %>
+        </div>
+        <aside class="sidebar">
+            <h3>Category</h3>
+            <div class="category-list">
+            <ul>
+                <% events.forEach(event => { %>
+                    <% event.category.forEach(cat => { %>
+                       <li> <%= cat.name %></li>
+               <% }) %>
+                <% }) %>
+            </ul>
+        </div>
+        </aside>
+    </div>
+    </section>
+</main>
+</div>
+<%- include('content/footer') -%>
